@@ -40,4 +40,6 @@ if [[ $SOMETHINGISWRONG -eq 1 ]]; then
         * ) echo "Please answer yes (y/Y) or no (n/N).";;
     esac
   done
+else
+  git push $ARGUMENTS
 fi
