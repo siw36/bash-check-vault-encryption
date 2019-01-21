@@ -1,7 +1,11 @@
 # Check vault encryption
-This script checks if every file which name contains vault is encrypted and gives you helpful output before pushing to a git repository.  
+This script checks if every file matching the configured naming pattern is encrypted and gives you helpful output before pushing to a git repository.  
 
-
+## Configuration
+__Naming convention filters:__  
+Edit the `check_vault.sh` file and add/remove naming patterns to/from the `TYPES` array.  
+All array entries will be used to find files matching these pattern.  
+Found files will be checked for `ansible-vault` header.
 
 ## Usage
 __Manual invocation:__  
@@ -25,3 +29,9 @@ safepush origin master
 ```
 Sample output:  
 ![Image](https://github.com/siw36/bash-check-vault-encryption/blob/master/images/sample_output.png)
+
+## Current matching pattern
+- `*vault*`
+- `*.keytab`
+- `*.pem`
+- `*.jks`

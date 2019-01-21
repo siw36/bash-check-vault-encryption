@@ -6,14 +6,24 @@ ARGUMENTS=`echo "$@"`
 # Preparing variables
 WD=`pwd`
 SEARCH='$ANSIBLE_VAULT;'
-FILES=`find -L $WD -iname '*vault*' -type f`
 SOMETHINGISWRONG=0
 NC='\033[0m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+FILES=()
+declare -a TYPES
+# Add more naming pattern to check those too
+TYPES=('*vault*' '*.keytab' '*.pem' '*.jks')
+
+# Find all files with matching naming convention
+for i in ${TYPES[@]}; do
+  for i in `find -L $WD -iname "$i" -type f`; do
+    FILES+=($i)
+  done
+done
 
 # Check each file that contains vault in its name
-for i in $FILES ; do
+for i in ${FILES[@]} ; do
   # Ignore empty files
   META=`file $i | awk '{print $2}'`
   if [[ $META != "empty" ]]; then
