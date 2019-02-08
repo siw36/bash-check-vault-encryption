@@ -41,15 +41,15 @@ for i in ${FILES[@]} ; do
 done
 
 if [[ $SOMETHINGISWRONG -eq 1 ]]; then
-  echo "There where unencrypted vault files found."
+  echo "Sensetive files that are unencrypted found!"
   while true; do
-    read -p "Do you wish to push anyways? (yY/nN) " answer
+    read -p "Do you wish to commit anyways? (yY/nN) " answer
     case $answer in
-        [yY]* ) git push $ARGUMENTS;break;;
+        [yY]* ) git commit $ARGUMENTS;break;;
         [nN]* ) exit;;
         * ) echo "Please answer yes (y/Y) or no (n/N).";;
     esac
   done
 else
-  git push $ARGUMENTS
+  git commit $ARGUMENTS
 fi
