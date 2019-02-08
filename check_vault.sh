@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get all arguments that where passed to git push
-ARGUMENTS=`echo "$@"`
+ARGUMENTS="`echo "$@"`"
 
 # Preparing variables
 WD=`pwd`
@@ -45,11 +45,11 @@ if [[ $SOMETHINGISWRONG -eq 1 ]]; then
   while true; do
     read -p "Do you wish to commit anyways? (yY/nN) " answer
     case $answer in
-        [yY]* ) git commit $ARGUMENTS;break;;
+        [yY]* ) git commit "$ARGUMENTS";break;;
         [nN]* ) exit;;
         * ) echo "Please answer yes (y/Y) or no (n/N).";;
     esac
   done
 else
-  git commit $ARGUMENTS
+  git commit "$ARGUMENTS"
 fi
